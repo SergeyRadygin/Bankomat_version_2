@@ -3,48 +3,69 @@ package main.java;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
 
-    String name;
-    int cardNumber;
-    double balance = 0;
+    static String name;
+    static int cardNumber;
+    static double balance = 0;
     private static final String FILENAME = "/C:/Users/Edge1/IdeaProjects/Bankomat_version_2/src/main/resources/Persons.json";
 
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) throws Exception {
-        Scanner scanner = new Scanner(System.in);
 
         ObjectMapper mapper = new ObjectMapper();
+        //Считываем json с нашими пользователями
+        Person[] persons = mapper.readValue(new File(FILENAME), Person[].class);
+        //Создаем список на основе массива, т.к. будем добавлять новых пользователей
+        ArrayList<Person> listPerson = new ArrayList<>(Arrays.asList(persons));
 
-        Person[] persons = new Person[2];
+        System.out.println("Пожалуйста представтесь:");
+        Person currentPerson = null;
+        String verificationName = scanner.next();
 
-        persons[0] = new Person("Mike", 654321, 0);
-        persons[1] = new Person("John", 123456, 2000);
-        mapper.writeValue(new File(FILENAME), persons);
+        for (Person existingPerson : listPerson) {
+            if (verificationName.equals(existingPerson.getName())) {
+                currentPerson = existingPerson;
 
-        //Person[] person = mapper.readValue(new File(FILENAME), Person[].class);
+            } /*else {
+                System.out.println("Пользователь в системе не обнаружен:");
+                System.out.println("Зарегистрируемся: (Да/Нет)");
+                String answer = scanner.next();
+                if (answer.equals("Да")) {
+                    System.out.println("Введите имя:");
+                    name = scanner.next();
+                    cardNumber = ThreadLocalRandom.current().nextInt(100000, 999999);
+                    currentPerson = new Person(name, cardNumber, 0);
+                } else if (answer.equals("Нет")){
+                    return;
+                }
+            }*/
 
-        for (int i = 0; i < persons.length; i++) {
-            System.out.println(persons[i].getName() + " " + persons[i].getCardNumber() + " " + persons[i].getBalance());
+            while (true) {
+                printMenu();
+                int numberOperation = scanner.nextInt();
+                if (numberOperation == 1) {
+                    System.out.println(showBalance(currentPerson));
+                } else if (numberOperation == 4) {
+                    break;
+                } else
+                    System.out.println("Нет такой операции!");
+            }
         }
 
-
-
-            //System.out.println(showBalance(scanner,prs));
-        /*while (true) {
-            printMenu();
-            int operation = scanner.nextInt();
-            if (operation == 1) {
-            }
-        }*/
     }
 
 
-    /*private static void printMenu() {
-        Scanner scanner = new Scanner(System.in);
+    //Записываем список в файл
+    //mapper.writeValue(new File(FILENAME), persons);
+    //Выводим в консоль всех пользователей для проверки
+
+
+    private static void printMenu() {
         System.out.println("Выберите номер операции:");
         System.out.println("------------------------");
         System.out.println("1.Баланс");
@@ -52,30 +73,22 @@ public class Main {
         System.out.println("3.Перевести деньги");
         System.out.println("4.Выход");
         System.out.println("------------------------");
-    }*/
+    }
 
-    private static double showBalance(Scanner scanner, Person person) {
-        System.out.println("Введите имя:");
-        String verificName = scanner.nextLine();
-        if (verificName.equals(person.getName())) {
-            return person.getBalance();
-        } else {
-            System.out.println("Нет такого клиента!");
+    private static double showBalance(Person currentPerson) {
+        try {
+            return currentPerson.getBalance();
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return -1;
     }
 
-    /*private static double topUpBalance(Scanner scanner, Person person) {
-        double topUp = scanner.nextDouble();
-        person.balance += topUp;
-        return person.balance;
+    private static double topUpBalance() {
+        return -2;
     }
 
-    private static double makeTransfer(Scanner scanner, Person person) {
-        int cardNumber = person.cardNumber;
-        double transfer = scanner.nextDouble();
-
-        return balance;
-    }*/
-
+    private static double makeTransfer() {
+        return -3;
+    }
 }

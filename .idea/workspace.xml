@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Подключил библиотеку Jackon для работы с json (подключил к maven). Создал класс Person. Создал тестовый Persons.json с данными, научился записывать и считывать оттуда данные и выводить в консоль." />
+    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Реализовал считывания json со списком пользователей. Сделал проверку на существующих пользователей, сделал заготовку на создание нового пользователя, если он отсутсвует в списке.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Task" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Task" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Persons.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persons.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660053151574</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Реализовал считывания json со списком пользователей. Сделал проверку на существующих пользователей, сделал заготовку на создание нового пользователя, если он отсутсвует в списке.">
+      <created>1660334252061</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1660334252061</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -137,16 +150,27 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Подключил библиотеку Jackon для работы с json (подключил к maven). Создал класс Person. Создал тестовый Persons.json с данными, научился записывать и считывать оттуда данные и выводить в консоль." />
-    <option name="LAST_COMMIT_MESSAGE" value="Подключил библиотеку Jackon для работы с json (подключил к maven). Создал класс Person. Создал тестовый Persons.json с данными, научился записывать и считывать оттуда данные и выводить в консоль." />
+    <MESSAGE value="Реализовал считывания json со списком пользователей. Сделал проверку на существующих пользователей, сделал заготовку на создание нового пользователя, если он отсутсвует в списке." />
+    <option name="LAST_COMMIT_MESSAGE" value="Реализовал считывания json со списком пользователей. Сделал проверку на существующих пользователей, сделал заготовку на создание нового пользователя, если он отсутсвует в списке." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
+        <breakpoint type="java-exception">
           <properties class="java.io.FileNotFoundException" package="java.io" />
           <option name="timeStamp" value="1" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="main.java.Person" memberName="name" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="listPerson.get(0)" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

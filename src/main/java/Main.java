@@ -3,27 +3,23 @@ package main.java;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.math.BigDecimal;
 import java.util.*;
 
 public class Main {
 
     static String name;
     static int cardNumber;
-    static double balance = 0;
     private static final String FILENAME = "/C:/Users/Edge1/IdeaProjects/Bankomat_version_2/src/main/resources/Persons.json";
-
     static Scanner scanner = new Scanner(System.in);
     static Random random = new Random();
-
     static Person currentPerson = null;
-
 
     public static void main(String[] args) throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
         //Считываем json с нашими пользователями
         Person[] persons = mapper.readValue(new File(FILENAME), Person[].class);
+
         //Создаем список на основе массива, т.к. будем добавлять новых пользователей
         ArrayList<Person> listPerson = new ArrayList<>(Arrays.asList(persons));
 
@@ -43,12 +39,14 @@ public class Main {
             while (true) {
                 if (answer.equals("Yes")) {
                     System.out.println("Введите имя:");
-                    name = scanner.next();
+                    name = verificationName;
                     int min = 100000;
                     int max = 999999;
                     cardNumber = random.nextInt(max - min) + min;
                     currentPerson = new Person(name, cardNumber, 0);
+                    listPerson.add(currentPerson);
                     System.out.println(currentPerson.getName() + "\n" + currentPerson.getCardNumber() + "\n" + currentPerson.getBalance());
+                    break;
                 } else if (answer.equals("No")) {
                     System.out.println("Завершаем программу.");
                     break;
@@ -57,37 +55,42 @@ public class Main {
                 }
             }
         }
-        while (true) {
+        boolean exit = false;
+        while (!exit) {
             printMenu();
             int numberOperation = scanner.nextInt();
-            if ((numberOperation == 1) && (currentPerson != null)) {
-                System.out.println("Баланс: " + currentPerson.getBalance());
-                System.out.println("-------------------------");
-
-            } else if (numberOperation == 2) {
-                System.out.println("На сколько пополнить счет: ");
-                try {
-                    System.out.println(topUpBalance(scanner.nextDouble()));
-                } catch (Exception e) {
-                    System.out.println(e);
+            switch (numberOperation) {
+                case 1: {
+                    System.out.println("Баланс: " + currentPerson.getBalance());
+                    System.out.println("-------------------------");
+                    break;
                 }
-            } else if (numberOperation == 3) {
-                makeTransfer(listPerson);
-            } else if (numberOperation == 4) {
-                mapper.writeValue(new File(FILENAME), persons);
-                break;
-            } else
-                System.out.println("Нет такой операции! или текущий пользователь null");
+                case 2: {
+                    System.out.println("На сколько пополнить счет: ");
+                    try {
+                        System.out.println(topUpBalance(scanner.nextDouble()));
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    }
+                    break;
+                }
+                case 3: {
+                    makeTransfer(listPerson);
+                    break;
+                }
+                case 4: {
+                    mapper.writeValue(new File(FILENAME), listPerson);
+                    exit = true;
+                    break;
+                }
+                default:
+                    System.out.println("Нет такой операции!");
+                    break;
+            }
+
         }
 
-
-        //Записываем список в файл
-
-
-        //Выводим в консоль всех пользователей для проверки
-
     }
-
 
     private static void printMenu() {
         System.out.println("Выберите номер операции:");
@@ -98,7 +101,6 @@ public class Main {
         System.out.println("4.Выход");
         System.out.println("------------------------");
     }
-
 
     private static double topUpBalance(double topUp) {
 

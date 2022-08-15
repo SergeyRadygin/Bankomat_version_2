@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Реализовал считывания json со списком пользователей. Сделал проверку на существующих пользователей, сделал заготовку на создание нового пользователя, если он отсутсвует в списке.">
+    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Доделал оставшиеся методы. Должно работать без багов и ошибок.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Task" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Task" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persons.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persons.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660334252061</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Доделал оставшиеся методы. Должно работать без багов и ошибок.">
+      <created>1660571505449</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1660571505449</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -151,7 +156,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Подключил библиотеку Jackon для работы с json (подключил к maven). Создал класс Person. Создал тестовый Persons.json с данными, научился записывать и считывать оттуда данные и выводить в консоль." />
     <MESSAGE value="Реализовал считывания json со списком пользователей. Сделал проверку на существующих пользователей, сделал заготовку на создание нового пользователя, если он отсутсвует в списке." />
-    <option name="LAST_COMMIT_MESSAGE" value="Реализовал считывания json со списком пользователей. Сделал проверку на существующих пользователей, сделал заготовку на создание нового пользователя, если он отсутсвует в списке." />
+    <MESSAGE value="Доделал оставшиеся методы. Должно работать без багов и ошибок." />
+    <option name="LAST_COMMIT_MESSAGE" value="Доделал оставшиеся методы. Должно работать без багов и ошибок." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,1 +1,1 @@
-[{"name":"John","balance":2000.0,"cardNumber":878409,"history":[]},{"name":"Mike","balance":333.0,"cardNumber":123456,"history":[]},{"name":"Dima","balance":5000.0,"cardNumber":277689,"history":["Dima запросил историю операций"]}]
+[{"name":"John","balance":2000.0,"cardNumber":878409,"history":[]},{"name":"Mike","balance":533.0,"cardNumber":123456,"history":[]},{"name":"Dima","balance":33.44,"cardNumber":990521,"history":["Dima: пополнил баланс на: 233.44","Dima запросил историю операций","Dima перевел 200.0 на карту 123456","Dima запросил историю операций"]}]

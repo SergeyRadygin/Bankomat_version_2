@@ -14,8 +14,6 @@ public class Main {
     static Random random = new Random();
     static Person currentPerson = null;
 
-    //static ArrayList<String> history;
-
     public static void main(String[] args) throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -34,7 +32,6 @@ public class Main {
             for (Person existingPerson : listPerson) {
                 if (verificationName.equals(existingPerson.getName())) {
                     currentPerson = existingPerson;
-                    currentPerson.getHistory().clear();
                     exit = true;
                 }
             }
@@ -55,6 +52,7 @@ public class Main {
                         currentPerson = new Person(name, cardNumber, 0, new ArrayList<String>());
                         listPerson.add(currentPerson);
                         System.out.println(currentPerson.getName() + "\n" + currentPerson.getCardNumber() + "\n" + currentPerson.getBalance() + "\n" + currentPerson.getHistory());
+                        exit = true;
                         break;
                     }
                     case "No": {
@@ -106,7 +104,7 @@ public class Main {
                     break;
                 }
                 case 5: {
-
+                    currentPerson.getHistory().clear();
                     mapper.writeValue(new File(FILENAME), listPerson);
                     exit = true;
                     break;
@@ -119,7 +117,6 @@ public class Main {
         }
 
     }
-
 
     private static void printMenu() {
         System.out.println("Выберите номер операции:");

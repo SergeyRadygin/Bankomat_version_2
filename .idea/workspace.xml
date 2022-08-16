@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Небольшой рефакторинг + реализовал вывод истории операций текущего пользователя.">
+    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Добавил очистку истории операции пользователя.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persons.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persons.json" afterDir="false" />
@@ -155,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660669409851</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Добавил очистку истории операции пользователя.">
+      <created>1660670027559</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1660670027559</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -175,7 +182,8 @@
     <MESSAGE value="Доделал оставшиеся методы. Должно работать без багов и ошибок." />
     <MESSAGE value="Заменил блок If-ов на Switch в выводе Меню. Добавил сериализацию по завершении работы приложения." />
     <MESSAGE value="Небольшой рефакторинг + реализовал вывод истории операций текущего пользователя." />
-    <option name="LAST_COMMIT_MESSAGE" value="Небольшой рефакторинг + реализовал вывод истории операций текущего пользователя." />
+    <MESSAGE value="Добавил очистку истории операции пользователя." />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил очистку истории операции пользователя." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -14,7 +14,7 @@ public class Main {
     static Random random = new Random();
     static Person currentPerson = null;
 
-    static ArrayList<String> history;
+    //static ArrayList<String> history;
 
     public static void main(String[] args) throws Exception {
 
@@ -34,6 +34,7 @@ public class Main {
             for (Person existingPerson : listPerson) {
                 if (verificationName.equals(existingPerson.getName())) {
                     currentPerson = existingPerson;
+                    currentPerson.getHistory().clear();
                     exit = true;
                 }
             }

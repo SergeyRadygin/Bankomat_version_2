@@ -14,6 +14,8 @@ public class Main {
     static Random random = new Random();
     static Person currentPerson = null;
 
+    static ArrayList<String> history;
+
     public static void main(String[] args) throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
@@ -23,55 +25,72 @@ public class Main {
         //Создаем список на основе массива, т.к. будем добавлять новых пользователей
         ArrayList<Person> listPerson = new ArrayList<>(Arrays.asList(persons));
 
-        System.out.println("Пожалуйста представтесь:");
+        boolean exit = false;
+        while (!exit) {
+            System.out.println("Пожалуйста представтесь:");
 
-        String verificationName = scanner.next();
+            String verificationName = scanner.next();
 
-        for (Person existingPerson : listPerson) {
-            if (verificationName.equals(existingPerson.getName())) {
-                currentPerson = existingPerson;
+            for (Person existingPerson : listPerson) {
+                if (verificationName.equals(existingPerson.getName())) {
+                    currentPerson = existingPerson;
+                    exit = true;
+                }
             }
-        }
-        if (currentPerson == null) {
-            System.out.println("Пользователь в системе не обнаружен!");
-            System.out.println("Зарегистрируемся: (Yes/No)");
-            String answer = scanner.next();
-            while (true) {
-                if (answer.equals("Yes")) {
-                    System.out.println("Введите имя:");
-                    name = verificationName;
-                    int min = 100000;
-                    int max = 999999;
-                    cardNumber = random.nextInt(max - min) + min;
-                    currentPerson = new Person(name, cardNumber, 0);
-                    listPerson.add(currentPerson);
-                    System.out.println(currentPerson.getName() + "\n" + currentPerson.getCardNumber() + "\n" + currentPerson.getBalance());
-                    break;
-                } else if (answer.equals("No")) {
-                    System.out.println("Завершаем программу.");
-                    break;
-                } else {
-                    System.out.println("Нет такой команды");
+            if (currentPerson == null) {
+                System.out.println("Пользователь в системе не обнаружен!");
+                System.out.println("Зарегистрируемся: (Yes/No)");
+
+                String answer = scanner.next();
+
+
+                switch (answer) {
+                    case "Yes": {
+                        System.out.println("Введите имя:");
+                        name = verificationName;
+                        int min = 100000;
+                        int max = 999999;
+                        cardNumber = random.nextInt(max - min) + min;
+                        currentPerson = new Person(name, cardNumber, 0, new ArrayList<String>());
+                        listPerson.add(currentPerson);
+                        System.out.println(currentPerson.getName() + "\n" + currentPerson.getCardNumber() + "\n" + currentPerson.getBalance() + "\n" + currentPerson.getHistory());
+                        break;
+                    }
+                    case "No": {
+                        System.out.println("1.Продолжить работу");
+                        System.out.println("2.Завершить работу программы ");
+                        int operation = scanner.nextInt();
+                        if (operation == 1) {
+                            continue;
+
+                        } else {
+                            System.exit(0);
+                            break;
+                        }
+                    }
+                    default:
+                        System.out.println("Нет такой команды");
+                        break;
                 }
             }
         }
-        boolean exit = false;
+        exit = false;
         while (!exit) {
             printMenu();
             int numberOperation = scanner.nextInt();
             switch (numberOperation) {
                 case 1: {
-                    System.out.println("Баланс: " + currentPerson.getBalance());
+                    String balanceMessage = "Баланс: " + currentPerson.getBalance();
+                    System.out.println(currentPerson.getName() + ": " + balanceMessage);
+                    currentPerson.getHistory().add(currentPerson.getName() + ": " + balanceMessage);
                     System.out.println("-------------------------");
                     break;
                 }
                 case 2: {
                     System.out.println("На сколько пополнить счет: ");
-                    try {
-                        System.out.println(topUpBalance(scanner.nextDouble()));
-                    } catch (Exception e) {
-                        System.out.println(e);
-                    }
+                    double topUp = scanner.nextDouble();
+                    System.out.println(topUpBalance(topUp));
+                    currentPerson.getHistory().add(currentPerson.getName() + ": " + "пополнил баланс на: " + topUp);
                     break;
                 }
                 case 3: {
@@ -79,6 +98,14 @@ public class Main {
                     break;
                 }
                 case 4: {
+                    for (String message : currentPerson.getHistory()) {
+                        System.out.println(message);
+                    }
+                    currentPerson.getHistory().add(currentPerson.getName() + " запросил историю операций");
+                    break;
+                }
+                case 5: {
+
                     mapper.writeValue(new File(FILENAME), listPerson);
                     exit = true;
                     break;
@@ -92,13 +119,15 @@ public class Main {
 
     }
 
+
     private static void printMenu() {
         System.out.println("Выберите номер операции:");
         System.out.println("------------------------");
         System.out.println("1.Баланс");
         System.out.println("2.Пополнить баланс");
         System.out.println("3.Перевести деньги");
-        System.out.println("4.Выход");
+        System.out.println("4.История операций");
+        System.out.println("5.Выход");
         System.out.println("------------------------");
     }
 
@@ -116,7 +145,7 @@ public class Main {
         return currentPerson.getBalance();
     }
 
-    private static double makeTransfer(ArrayList<Person> listPerson) {
+    private static void makeTransfer(ArrayList<Person> listPerson) {
         Person makePerson = null;
         System.out.println("Введите номер карты: ");
         cardNumber = scanner.nextInt();
@@ -128,7 +157,6 @@ public class Main {
         }
         if (makePerson == null) {
             System.out.println("Карты с таким номером не обнаружено");
-            return currentPerson.getBalance();
         } else {
             System.out.println("Какую сумму хотите перевести?: ");
 
@@ -139,10 +167,10 @@ public class Main {
                 double makePersonBalance = makePerson.getBalance() + transfer;
                 makePerson.setBalance(makePersonBalance);
                 System.out.println("Баланс: " + currentPerson.getBalance());
-                return currentPerson.getBalance();
+                currentPerson.getHistory().add(currentPerson.getName() + " перевел " + transfer + " на карту " + cardNumber);
             } else {
                 System.out.println("Недостаточно средств для перевода!");
-                return currentPerson.getBalance();
+                currentPerson.getHistory().add(currentPerson.getName() + ": не достаточно средств для перевода на карту " + cardNumber);
             }
         }
     }

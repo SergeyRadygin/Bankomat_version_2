@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Доделал оставшиеся методы. Должно работать без багов и ошибок.">
+    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Заменил блок If-ов на Switch в выводе Меню. Добавил сериализацию по завершении работы приложения.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bankomat_version_2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Bankomat_version_2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persons.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persons.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +29,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2D28KNLeIXkyfcYwJSDMJvHCDVg" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -139,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660571505449</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Заменил блок If-ов на Switch в выводе Меню. Добавил сериализацию по завершении работы приложения.">
+      <created>1660573826226</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1660573826226</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -157,7 +170,8 @@
     <MESSAGE value="Подключил библиотеку Jackon для работы с json (подключил к maven). Создал класс Person. Создал тестовый Persons.json с данными, научился записывать и считывать оттуда данные и выводить в консоль." />
     <MESSAGE value="Реализовал считывания json со списком пользователей. Сделал проверку на существующих пользователей, сделал заготовку на создание нового пользователя, если он отсутсвует в списке." />
     <MESSAGE value="Доделал оставшиеся методы. Должно работать без багов и ошибок." />
-    <option name="LAST_COMMIT_MESSAGE" value="Доделал оставшиеся методы. Должно работать без багов и ошибок." />
+    <MESSAGE value="Заменил блок If-ов на Switch в выводе Меню. Добавил сериализацию по завершении работы приложения." />
+    <option name="LAST_COMMIT_MESSAGE" value="Заменил блок If-ов на Switch в выводе Меню. Добавил сериализацию по завершении работы приложения." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -165,6 +179,10 @@
         <breakpoint type="java-exception">
           <properties class="java.io.FileNotFoundException" package="java.io" />
           <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="2" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>

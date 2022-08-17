@@ -3,6 +3,7 @@ package main.java;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class Main {
@@ -134,10 +135,11 @@ public class Main {
 
     private static void topUpBalance() {
         System.out.println("На сколько пополнить счет: ");
-        double topUp = scanner.nextDouble();
-        if (topUp > 0) {
+        String topUp = scanner.next();
+        double topUpDouble = Double.parseDouble(topUp);
+        if (topUpDouble > 0) {
             double balance = currentPerson.getBalance();
-            balance += topUp;
+            balance += topUpDouble;
             currentPerson.setBalance(balance);
             System.out.println("Баланс " + currentPerson.getBalance());
         } else {
@@ -157,18 +159,21 @@ public class Main {
         }
         if (makePerson == null) {
             System.out.println("Карты с таким номером не обнаружено");
+        } else if (currentPerson.getCardNumber() == makePerson.getCardNumber()) {
+            System.out.println("Нельзя перевести средства себе!");
         } else {
             System.out.println("Какую сумму хотите перевести?: ");
+            String transfer = scanner.next();
+            double transferDouble = Double.parseDouble(transfer);
 
-            double transfer = scanner.nextDouble();
-            if (transfer < currentPerson.getBalance()) {
-                double currentPersonBalance = currentPerson.getBalance() - transfer;
-                currentPerson.setBalance(currentPersonBalance);
-                double makePersonBalance = makePerson.getBalance() + transfer;
-                makePerson.setBalance(makePersonBalance);
+            if (transferDouble > 0 && transferDouble <= currentPerson.getBalance()) {
+                currentPerson.setBalance(currentPerson.getBalance() - transferDouble);
+                makePerson.setBalance(makePerson.getBalance() + transferDouble);
                 System.out.println("Баланс: " + currentPerson.getBalance());
                 currentPerson.getHistory().add(currentPerson.getName() + " перевел " + transfer + " на карту " + cardNumber + " клиента " + makePerson.getName());
                 makePerson.getHistory().add(currentPerson.getName() + " перевел вам " + transfer);
+            } else if (transferDouble < 0) {
+                System.out.println("Нельзя перевести отрицательную сумму!");
             } else {
                 System.out.println("Недостаточно средств для перевода!");
                 currentPerson.getHistory().add(currentPerson.getName() + ": не достаточно средств для перевода на карту " + cardNumber);

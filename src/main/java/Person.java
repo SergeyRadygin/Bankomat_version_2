@@ -33,6 +33,8 @@ public class Person {
         return history;
     }
 
+
+
     public Person(String name, int cardNumber, double balance, ArrayList<String> history) {
         this.name = name;
         this.cardNumber = cardNumber;

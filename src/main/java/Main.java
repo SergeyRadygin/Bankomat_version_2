@@ -6,7 +6,6 @@ import java.io.File;
 import java.util.*;
 
 public class Main {
-
     static String name;
     static int cardNumber;
     private static final String FILENAME = "/C:/Users/Edge1/IdeaProjects/Bankomat_version_2/src/main/resources/Persons.json";
@@ -41,11 +40,8 @@ public class Main {
                     System.out.println("Зарегистрируемся: (Yes/No)");
 
                     String answer = scanner.next();
-
-
                     switch (answer) {
                         case "Yes": {
-                            System.out.println("Введите имя:");
                             name = verificationName;
                             int min = 100000;
                             int max = 999999;
@@ -97,12 +93,14 @@ public class Main {
                         break;
                     }
                     case 5: {
+                        //Записываем в json наших пользователей с обновленной информацией
                         mapper.writeValue(new File(FILENAME), listPerson);
+                        currentPerson = null;
                         exit = true;
                         break;
                     }
                     case 6: {
-                        currentPerson.getHistory().clear();
+                        //Записываем в json наших пользователей с обновленной информацией
                         mapper.writeValue(new File(FILENAME), listPerson);
                         System.exit(0);
                         break;
@@ -130,7 +128,6 @@ public class Main {
     private static void showBalance() {
         String balanceMessage = "Баланс " + currentPerson.getBalance();
         System.out.println(currentPerson.getName() + ": " + balanceMessage);
-        currentPerson.getHistory().add(currentPerson.getName() + ": " + balanceMessage);
         System.out.println("-------------------------");
     }
 
@@ -140,12 +137,9 @@ public class Main {
         double topUp = scanner.nextDouble();
         if (topUp > 0) {
             double balance = currentPerson.getBalance();
-
             balance += topUp;
             currentPerson.setBalance(balance);
             System.out.println("Баланс " + currentPerson.getBalance());
-            currentPerson.getHistory().add(currentPerson.getName() + " пополнил баланс на: " + topUp);
-
         } else {
             System.out.println("Нельзя вводить отрицательное число!");
         }
@@ -173,7 +167,8 @@ public class Main {
                 double makePersonBalance = makePerson.getBalance() + transfer;
                 makePerson.setBalance(makePersonBalance);
                 System.out.println("Баланс: " + currentPerson.getBalance());
-                currentPerson.getHistory().add(currentPerson.getName() + " перевел " + transfer + " на карту " + cardNumber);
+                currentPerson.getHistory().add(currentPerson.getName() + " перевел " + transfer + " на карту " + cardNumber + " клиента " + makePerson.getName());
+                makePerson.getHistory().add(currentPerson.getName() + " перевел вам " + transfer);
             } else {
                 System.out.println("Недостаточно средств для перевода!");
                 currentPerson.getHistory().add(currentPerson.getName() + ": не достаточно средств для перевода на карту " + cardNumber);
@@ -185,6 +180,5 @@ public class Main {
         for (String message : currentPerson.getHistory()) {
             System.out.println(message);
         }
-        currentPerson.getHistory().add(currentPerson.getName() + " запросил историю операций");
     }
 }

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Добавил пункт 5 - выхода из аккаунта.">
+    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Рефакторинг, вынес в методы все операции в программе, за исключением определения текущего пользователя и регистрацией нового.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persons.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persons.json" afterDir="false" />
@@ -176,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660670948158</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Рефакторинг, вынес в методы все операции в программе, за исключением определения текущего пользователя и регистрацией нового.">
+      <created>1660723035901</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1660723035901</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -199,7 +206,8 @@
     <MESSAGE value="Добавил очистку истории операции пользователя." />
     <MESSAGE value="Добавил очистку истории операции пользователя после выхода из программы." />
     <MESSAGE value="Добавил пункт 5 - выхода из аккаунта." />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил пункт 5 - выхода из аккаунта." />
+    <MESSAGE value="Рефакторинг, вынес в методы все операции в программе, за исключением определения текущего пользователя и регистрацией нового." />
+    <option name="LAST_COMMIT_MESSAGE" value="Рефакторинг, вынес в методы все операции в программе, за исключением определения текущего пользователя и регистрацией нового." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

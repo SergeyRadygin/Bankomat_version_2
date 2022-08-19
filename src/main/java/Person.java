@@ -32,14 +32,34 @@ public class Person {
     public ArrayList<String> getHistory(){
         return history;
     }
+    private String login;
+    public void setLogin(String login) {
+        this.login = login;
+    }
+    public String getLogin() {
+        return login;
+    }
+    public String password;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public String getPassword() {
+        return password;
+    }
 
 
 
-    public Person(String name, int cardNumber, double balance, ArrayList<String> history) {
+
+
+
+
+    public Person(String name, int cardNumber, double balance, ArrayList<String> history, String login, String password) {
         this.name = name;
         this.cardNumber = cardNumber;
         this.balance = balance;
         this.history = history;
+        this.login = login;
+        this.password = password;
     }
     public Person() {
     }

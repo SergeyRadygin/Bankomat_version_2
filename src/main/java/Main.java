@@ -1,14 +1,15 @@
 package main.java;
 
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.File;
-import java.text.DecimalFormat;
 import java.util.*;
 
 public class Main {
     static String name;
     static int cardNumber;
+    static String login;
+    static String password;
     private static final String FILENAME = "/C:/Users/Edge1/IdeaProjects/Bankomat_version_2/src/main/resources/Persons.json";
     static Scanner scanner = new Scanner(System.in);
     static Random random = new Random();
@@ -26,48 +27,36 @@ public class Main {
         while (!startAgain) {
             boolean exit = false;
             while (!exit) {
-                System.out.println("Пожалуйста представтесь:");
-
-                String verificationName = scanner.next();
-
-                for (Person existingPerson : listPerson) {
-                    if (verificationName.equals(existingPerson.getName())) {
-                        currentPerson = existingPerson;
-                        exit = true;
-                    }
-                }
-                if (currentPerson == null) {
-                    System.out.println("Пользователь в системе не обнаружен!");
-                    System.out.println("Зарегистрируемся: (Yes/No)");
-
-                    String answer = scanner.next();
-                    switch (answer) {
-                        case "Yes": {
-                            name = verificationName;
-                            int min = 100000;
-                            int max = 999999;
-                            cardNumber = random.nextInt(max - min) + min;
-                            currentPerson = new Person(name, cardNumber, 0, new ArrayList<>());
-                            listPerson.add(currentPerson);
-                            System.out.println(currentPerson.getName() + "\n" + currentPerson.getCardNumber() + "\n" + currentPerson.getBalance());
+                System.out.println("Добро пожаловать!");
+                System.out.println("1.Войти в систему");
+                System.out.println("2.Зарегистироватся");
+                System.out.println("3.Выход");
+                int numOperation = scanner.nextInt();
+                switch (numOperation) {
+                    case 1: {
+                        logIn(listPerson);
+                        if (currentPerson == null) {
+                            System.out.println("Неверно введен логин или пароль/Пользователь не найден в системе!");
+                        } else {
                             exit = true;
-                            break;
                         }
-                        case "No": {
-                            System.out.println("1.Продолжить работу");
-                            System.out.println("2.Завершить работу программы ");
-                            int operation = scanner.nextInt();
-                            if (operation == 1) {
-                                continue;
-
-                            } else {
-                                System.exit(0);
-                                break;
-                            }
+                        break;
+                    }
+                    case 2: {
+                        if (currentPerson == null) {
+                            createNewUser(listPerson);
+                            exit = true;
                         }
-                        default:
-                            System.out.println("Нет такой команды");
-                            break;
+                        break;
+                    }
+                    case 3: {
+                        mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(FILENAME), listPerson);
+                        System.exit(0);
+                        break;
+                    }
+                    default: {
+                        System.out.println("Нет такой команды");
+                        break;
                     }
                 }
             }
@@ -95,14 +84,14 @@ public class Main {
                     }
                     case 5: {
                         //Записываем в json наших пользователей с обновленной информацией
-                        mapper.writeValue(new File(FILENAME), listPerson);
+                        mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(FILENAME), listPerson);
                         currentPerson = null;
                         exit = true;
                         break;
                     }
                     case 6: {
                         //Записываем в json наших пользователей с обновленной информацией
-                        mapper.writeValue(new File(FILENAME), listPerson);
+                        mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(FILENAME), listPerson);
                         System.exit(0);
                         break;
                     }
@@ -113,6 +102,7 @@ public class Main {
             }
         }
     }
+
 
     private static void printMenu() {
         System.out.println("Выберите номер операции:");
@@ -185,5 +175,39 @@ public class Main {
         for (String message : currentPerson.getHistory()) {
             System.out.println(message);
         }
+    }
+
+    private static void createNewUser (ArrayList<Person> listPerson) {
+        System.out.println("Введите имя:");
+        name = scanner.next();
+        System.out.println("введите пароль:");
+        password = scanner.next();
+        int min = 100000;
+        int max = 999999;
+        cardNumber = random.nextInt(max - min) + min;
+        login = name + "@bankomat";
+        currentPerson = new Person(name, cardNumber, 0, new ArrayList<>(), login, password);
+        listPerson.add(currentPerson);
+        System.out.println("Ваш логин: " + currentPerson.getLogin());
+        System.out.println("Номер карты: " + currentPerson.getCardNumber());
+        System.out.println("Ваш баланс: " + currentPerson.getBalance());
+    }
+
+    private static Person logIn (ArrayList<Person> listPerson) {
+        System.out.println("Введите логин:");
+        String verificationLogin = scanner.next();
+        System.out.println("Введите пароль:");
+        String verificationPassword = scanner.next();
+
+        for (Person existingPerson : listPerson) {
+            if (verificationLogin.equals(existingPerson.getLogin()) && verificationPassword.equals(existingPerson.getPassword())) {
+                int verifPass = verificationPassword.hashCode();
+                int pass = existingPerson.getPassword().hashCode();
+                if (verifPass == pass) {
+                    currentPerson = existingPerson;
+                }
+            }
+        }
+        return currentPerson;
     }
 }

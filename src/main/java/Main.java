@@ -2,29 +2,35 @@ package main.java;
 
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.File;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 public class Main {
-    static String name;
-    static int cardNumber;
-    static String login;
-    static String password;
-    private static final String FILENAME = "/C:/Users/Edge1/IdeaProjects/Bankomat_version_2/src/main/resources/Persons.json";
+
+    private static final Path file = Paths.get("C:\\Users\\Edge1\\IdeaProjects", "Bankomat_version_2\\src\\main\\resources\\Persons.json");
+
     static Scanner scanner = new Scanner(System.in);
-    static Random random = new Random();
     static Person currentPerson = null;
 
     public static void main(String[] args) throws Exception {
 
         ObjectMapper mapper = new ObjectMapper();
         //Считываем json с нашими пользователями
-        Person[] persons = mapper.readValue(new File(FILENAME), Person[].class);
+        Person[] persons = mapper.readValue(new File(String.valueOf(file)), Person[].class);
         //Создаем список на основе массива, т.к. будем добавлять новых пользователей
         ArrayList<Person> listPerson = new ArrayList<>(Arrays.asList(persons));
 
+
         boolean startAgain = false;
         while (!startAgain) {
+            boolean menuExit = false;
             boolean exit = false;
             while (!exit) {
                 System.out.println("Добро пожаловать!");
@@ -35,11 +41,7 @@ public class Main {
                 switch (numOperation) {
                     case 1: {
                         logIn(listPerson);
-                        if (currentPerson == null) {
-                            System.out.println("Неверно введен логин или пароль/Пользователь не найден в системе!");
-                        } else {
-                            exit = true;
-                        }
+                        exit = true;
                         break;
                     }
                     case 2: {
@@ -50,8 +52,10 @@ public class Main {
                         break;
                     }
                     case 3: {
-                        mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(FILENAME), listPerson);
-                        System.exit(0);
+                        mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(String.valueOf(file)), listPerson);
+                        startAgain = true;
+                        exit = true;
+                        menuExit = true;
                         break;
                     }
                     default: {
@@ -61,8 +65,7 @@ public class Main {
                 }
             }
 
-            exit = false;
-            while (!exit) {
+            while (!menuExit) {
                 printMenu();
                 int numberOperation = scanner.nextInt();
                 switch (numberOperation) {
@@ -84,15 +87,15 @@ public class Main {
                     }
                     case 5: {
                         //Записываем в json наших пользователей с обновленной информацией
-                        mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(FILENAME), listPerson);
-                        currentPerson = null;
-                        exit = true;
+                        mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(String.valueOf(file)), listPerson);
+                        menuExit = true;
                         break;
                     }
                     case 6: {
                         //Записываем в json наших пользователей с обновленной информацией
-                        mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(FILENAME), listPerson);
-                        System.exit(0);
+                        mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(String.valueOf(file)), listPerson);
+                        startAgain = true;
+                        menuExit = true;
                         break;
                     }
                     default:
@@ -140,7 +143,7 @@ public class Main {
     private static void makeTransfer(ArrayList<Person> listPerson) {
         Person makePerson = null;
         System.out.println("Введите номер карты: ");
-        cardNumber = scanner.nextInt();
+        int cardNumber = scanner.nextInt();
 
         for (Person existingCardPerson : listPerson) {
             if (cardNumber == existingCardPerson.getCardNumber()) {
@@ -177,37 +180,44 @@ public class Main {
         }
     }
 
-    private static void createNewUser (ArrayList<Person> listPerson) {
+    private static void createNewUser(ArrayList<Person> listPerson) throws NoSuchAlgorithmException {
         System.out.println("Введите имя:");
-        name = scanner.next();
+        String name = scanner.next();
         System.out.println("введите пароль:");
-        password = scanner.next();
+        String password = scanner.next();
+        Random random = new Random();
         int min = 100000;
         int max = 999999;
-        cardNumber = random.nextInt(max - min) + min;
-        login = name + "@bankomat";
-        currentPerson = new Person(name, cardNumber, 0, new ArrayList<>(), login, password);
+        int cardNumber = random.nextInt(max - min) + min;
+        String login = name + "@bankomat";
+        currentPerson = new Person(name, cardNumber, 0, new ArrayList<>(), login, hashPassword(password));
         listPerson.add(currentPerson);
         System.out.println("Ваш логин: " + currentPerson.getLogin());
         System.out.println("Номер карты: " + currentPerson.getCardNumber());
         System.out.println("Ваш баланс: " + currentPerson.getBalance());
     }
 
-    private static Person logIn (ArrayList<Person> listPerson) {
+    private static Person logIn(ArrayList<Person> listPerson) throws NoSuchAlgorithmException {
         System.out.println("Введите логин:");
         String verificationLogin = scanner.next();
         System.out.println("Введите пароль:");
         String verificationPassword = scanner.next();
-
         for (Person existingPerson : listPerson) {
-            if (verificationLogin.equals(existingPerson.getLogin()) && verificationPassword.equals(existingPerson.getPassword())) {
-                int verifPass = verificationPassword.hashCode();
-                int pass = existingPerson.getPassword().hashCode();
-                if (verifPass == pass) {
-                    currentPerson = existingPerson;
-                }
+            if (verificationLogin.equals(existingPerson.getLogin()) && hashPassword(verificationPassword).equals(existingPerson.getPassword())) {
+                currentPerson = existingPerson;
+                return currentPerson;
             }
         }
-        return currentPerson;
+        return null;
     }
+
+    private static String hashPassword(String password) throws NoSuchAlgorithmException {
+        MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+        byte[] hashBytes = messageDigest.digest(password.getBytes(StandardCharsets.UTF_8));
+        BigInteger noHash = new BigInteger(1, hashBytes);
+        String hashStr = noHash.toString(16);
+        return hashStr;
+    }
+
+
 }

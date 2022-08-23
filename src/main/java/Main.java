@@ -13,11 +13,9 @@ import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 public class Main {
-
     private static final Path file = Paths.get("C:\\Users\\Edge1\\IdeaProjects", "Bankomat_version_2\\src\\main\\resources\\Persons.json");
-
     static Scanner scanner = new Scanner(System.in);
-    static Person currentPerson = null;
+    static Random random = new Random();
 
     public static void main(String[] args) throws Exception {
 
@@ -27,12 +25,12 @@ public class Main {
         //Создаем список на основе массива, т.к. будем добавлять новых пользователей
         ArrayList<Person> listPerson = new ArrayList<>(Arrays.asList(persons));
 
-
         boolean startAgain = false;
         while (!startAgain) {
-            boolean menuExit = false;
-            boolean exit = false;
-            while (!exit) {
+            Person currentPerson = null;
+            boolean secondMenu = false;
+            boolean startMenu = false;
+            while (!startMenu) {
                 System.out.println("Добро пожаловать!");
                 System.out.println("1.Войти в систему");
                 System.out.println("2.Зарегистироватся");
@@ -40,22 +38,23 @@ public class Main {
                 int numOperation = scanner.nextInt();
                 switch (numOperation) {
                     case 1: {
-                        logIn(listPerson);
-                        exit = true;
+                        currentPerson = logIn(listPerson);
+                        if (currentPerson == null) {
+                            System.out.println("Текущий пользователь - Null");
+                        }
+                        startMenu = true;
                         break;
                     }
                     case 2: {
-                        if (currentPerson == null) {
-                            createNewUser(listPerson);
-                            exit = true;
-                        }
+                        createNewUser(listPerson);
+                        startMenu = true;
                         break;
                     }
                     case 3: {
                         mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(String.valueOf(file)), listPerson);
                         startAgain = true;
-                        exit = true;
-                        menuExit = true;
+                        startMenu = true;
+                        secondMenu = true;
                         break;
                     }
                     default: {
@@ -65,37 +64,37 @@ public class Main {
                 }
             }
 
-            while (!menuExit) {
+            while (!secondMenu) {
                 printMenu();
                 int numberOperation = scanner.nextInt();
                 switch (numberOperation) {
                     case 1: {
-                        showBalance();
+                        showBalance(currentPerson);
                         break;
                     }
                     case 2: {
-                        topUpBalance();
+                        topUpBalance(currentPerson);
                         break;
                     }
                     case 3: {
-                        makeTransfer(listPerson);
+                        makeTransfer(listPerson, currentPerson);
                         break;
                     }
                     case 4: {
-                        showHistory();
+                        showHistory(currentPerson);
                         break;
                     }
                     case 5: {
                         //Записываем в json наших пользователей с обновленной информацией
                         mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(String.valueOf(file)), listPerson);
-                        menuExit = true;
+                        secondMenu = true;
                         break;
                     }
                     case 6: {
                         //Записываем в json наших пользователей с обновленной информацией
                         mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(String.valueOf(file)), listPerson);
                         startAgain = true;
-                        menuExit = true;
+                        secondMenu = true;
                         break;
                     }
                     default:
@@ -105,7 +104,6 @@ public class Main {
             }
         }
     }
-
 
     private static void printMenu() {
         System.out.println("Выберите номер операции:");
@@ -119,14 +117,30 @@ public class Main {
         System.out.println("------------------------");
     }
 
-    private static void showBalance() {
-        String balanceMessage = "Баланс " + currentPerson.getBalance();
-        System.out.println(currentPerson.getName() + ": " + balanceMessage);
+    private static Person logIn(ArrayList<Person> listPerson) throws NoSuchAlgorithmException {
+        Person currentPerson = null;
+        System.out.println("Введите логин:");
+        String verificationLogin = scanner.next();
+        System.out.println("Введите пароль:");
+        String verificationPassword = scanner.next();
+        for (Person existingPerson : listPerson) {
+            if (verificationLogin.equals(existingPerson.getLogin()) && hashPassword(verificationPassword).equals(existingPerson.getPassword())) {
+                currentPerson = existingPerson;
+                return currentPerson;
+            }
+        }
+        System.out.println("Пользователь не найден или неверное введен логин/пароль");
+        return logIn(listPerson);
+    }
+
+
+    private static void showBalance(Person currentPerson) {
+        System.out.println(currentPerson.getName() + ": " + "Баланс " + currentPerson.getBalance());
         System.out.println("-------------------------");
     }
 
 
-    private static void topUpBalance() {
+    private static void topUpBalance(Person currentPerson) {
         System.out.println("На сколько пополнить счет: ");
         String topUp = scanner.next();
         double topUpDouble = Double.parseDouble(topUp);
@@ -140,7 +154,7 @@ public class Main {
         }
     }
 
-    private static void makeTransfer(ArrayList<Person> listPerson) {
+    private static void makeTransfer(ArrayList<Person> listPerson, Person currentPerson) {
         Person makePerson = null;
         System.out.println("Введите номер карты: ");
         int cardNumber = scanner.nextInt();
@@ -174,7 +188,7 @@ public class Main {
         }
     }
 
-    private static void showHistory() {
+    private static void showHistory(Person currentPerson) {
         for (String message : currentPerson.getHistory()) {
             System.out.println(message);
         }
@@ -185,31 +199,17 @@ public class Main {
         String name = scanner.next();
         System.out.println("введите пароль:");
         String password = scanner.next();
-        Random random = new Random();
         int min = 100000;
         int max = 999999;
         int cardNumber = random.nextInt(max - min) + min;
         String login = name + "@bankomat";
-        currentPerson = new Person(name, cardNumber, 0, new ArrayList<>(), login, hashPassword(password));
+        Person currentPerson = new Person(name, cardNumber, 0, new ArrayList<>(), login, hashPassword(password));
         listPerson.add(currentPerson);
         System.out.println("Ваш логин: " + currentPerson.getLogin());
         System.out.println("Номер карты: " + currentPerson.getCardNumber());
         System.out.println("Ваш баланс: " + currentPerson.getBalance());
     }
 
-    private static Person logIn(ArrayList<Person> listPerson) throws NoSuchAlgorithmException {
-        System.out.println("Введите логин:");
-        String verificationLogin = scanner.next();
-        System.out.println("Введите пароль:");
-        String verificationPassword = scanner.next();
-        for (Person existingPerson : listPerson) {
-            if (verificationLogin.equals(existingPerson.getLogin()) && hashPassword(verificationPassword).equals(existingPerson.getPassword())) {
-                currentPerson = existingPerson;
-                return currentPerson;
-            }
-        }
-        return null;
-    }
 
     private static String hashPassword(String password) throws NoSuchAlgorithmException {
         MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
@@ -218,6 +218,4 @@ public class Main {
         String hashStr = noHash.toString(16);
         return hashStr;
     }
-
-
 }

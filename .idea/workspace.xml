@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Пароль храним в виде хэша в json, подсказка по паролям в Task. Небольшой рефакторинг.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Вынес currentPerson из класса Main. Random вернул.">
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Persons.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persons.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661087866434</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Вынес currentPerson из класса Main. Random вернул.">
+      <created>1661240557413</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1661240557413</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -231,7 +236,8 @@
     <MESSAGE value="Убрал зацикливание после выхода из аккаунта.&#10;Переработал вывод истории операций, теперь записывается только история переводов, как у текущего пользователя, так и кому осуществлен перевод." />
     <MESSAGE value="Переработал вход в систему, теперь нужен логин (логин выдается при регистрации - имя + @bankomat) и пароль. Доработал вывод в красивый json. Вынес код из мейна в отдельные методы." />
     <MESSAGE value="Пароль храним в виде хэша в json, подсказка по паролям в Task. Небольшой рефакторинг." />
-    <option name="LAST_COMMIT_MESSAGE" value="Пароль храним в виде хэша в json, подсказка по паролям в Task. Небольшой рефакторинг." />
+    <MESSAGE value="Вынес currentPerson из класса Main. Random вернул." />
+    <option name="LAST_COMMIT_MESSAGE" value="Вынес currentPerson из класса Main. Random вернул." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -40,7 +40,7 @@ public class Main {
                     case 1: {
                         currentPerson = logIn(listPerson);
                         if (currentPerson == null) {
-                            System.out.println("Текущий пользователь - Null");
+                            logIn(listPerson);
                         }
                         startMenu = true;
                         break;
@@ -130,7 +130,7 @@ public class Main {
             }
         }
         System.out.println("Пользователь не найден или неверное введен логин/пароль");
-        return logIn(listPerson);
+        return null;
     }
 
 

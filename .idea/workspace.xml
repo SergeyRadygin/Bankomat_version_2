@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Вынес currentPerson из класса Main. Random вернул.">
+    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Убрал рекурсию из logIn.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/IUserRepo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/JsonUserRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Persons.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persons.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -209,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661240557413</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Убрал рекурсию из logIn.">
+      <created>1661241344639</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1661241344639</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -237,7 +250,8 @@
     <MESSAGE value="Переработал вход в систему, теперь нужен логин (логин выдается при регистрации - имя + @bankomat) и пароль. Доработал вывод в красивый json. Вынес код из мейна в отдельные методы." />
     <MESSAGE value="Пароль храним в виде хэша в json, подсказка по паролям в Task. Небольшой рефакторинг." />
     <MESSAGE value="Вынес currentPerson из класса Main. Random вернул." />
-    <option name="LAST_COMMIT_MESSAGE" value="Вынес currentPerson из класса Main. Random вернул." />
+    <MESSAGE value="Убрал рекурсию из logIn." />
+    <option name="LAST_COMMIT_MESSAGE" value="Убрал рекурсию из logIn." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

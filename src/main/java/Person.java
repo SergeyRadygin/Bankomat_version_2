@@ -49,10 +49,6 @@ public class Person {
 
 
 
-
-
-
-
     public Person(String name, int cardNumber, double balance, ArrayList<String> history, String login, String password) {
         this.name = name;
         this.cardNumber = cardNumber;

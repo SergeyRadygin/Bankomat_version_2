@@ -7,9 +7,9 @@
   "password" : "96d9632f363564cc3032521409cf22a852f2032eec099ed5967c0d000cec607a"
 }, {
   "name" : "Mike",
-  "balance" : 6289.0,
+  "balance" : 7689.0,
   "cardNumber" : 123456,
-  "history" : [ "Anton перевел вам 2000.0", "Mike перевел 2000.0 на карту 878409 клиента John", "Dima перевел вам 23", "John перевел вам 200", "test перевел вам 1500" ],
+  "history" : [ "Anton перевел вам 2000.0", "Mike перевел 2000.0 на карту 878409 клиента John", "Dima перевел вам 23", "John перевел вам 200", "test перевел вам 1500", "test перевел вам 200", "test перевел вам 1200" ],
   "login" : "Mike@bankomat",
   "password" : "64b4d0f47c93ce23d157e68a58767356283dc9b63c459d45d0e0e39b3a64b9b9"
 }, {
@@ -26,4 +26,11 @@
   "history" : [ ],
   "login" : "Misha@bankomat",
   "password" : "cf333f0487504ea767fe644995c14d6fc6bcb2b8d68c2417f3158c18dafdd075"
-}]
+}, {
+  "name" : "test",
+  "balance" : 2400.0,
+  "cardNumber" : 689752,
+  "history" : [ "test перевел 200 на карту 123456 клиента Mike", "test перевел 1200 на карту 123456 клиента Mike" ],
+  "login" : "test@bankomat",
+  "password" : "1b4f0e9851971998e732078544c96b36c3d01cedf7caa332359d6f1d83567014"
+} ]

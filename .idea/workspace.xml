@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Убрал рекурсию из logIn.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/IUserRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/JsonUserRepo.java" afterDir="false" />
+    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Реализовал интерфейс IUserRepo и класс JsonUserRepo.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/IUserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IUserRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/JsonUserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/JsonUserRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Persons.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persons.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661241344639</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Реализовал интерфейс IUserRepo и класс JsonUserRepo.">
+      <created>1661437835342</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1661437835342</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -251,7 +256,8 @@
     <MESSAGE value="Пароль храним в виде хэша в json, подсказка по паролям в Task. Небольшой рефакторинг." />
     <MESSAGE value="Вынес currentPerson из класса Main. Random вернул." />
     <MESSAGE value="Убрал рекурсию из logIn." />
-    <option name="LAST_COMMIT_MESSAGE" value="Убрал рекурсию из logIn." />
+    <MESSAGE value="Реализовал интерфейс IUserRepo и класс JsonUserRepo." />
+    <option name="LAST_COMMIT_MESSAGE" value="Реализовал интерфейс IUserRepo и класс JsonUserRepo." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

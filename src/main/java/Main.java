@@ -22,7 +22,8 @@ public class Main {
                 System.out.println("Добро пожаловать!");
                 System.out.println("1.Войти в систему");
                 System.out.println("2.Зарегистироватся");
-                System.out.println("3.Выход");
+                System.out.println("3.Забыли пароль?");
+                System.out.println("4.Выход");
                 int numOperation = scanner.nextInt();
                 switch (numOperation) {
                     case 1: {
@@ -48,6 +49,18 @@ public class Main {
                         break;
                     }
                     case 3: {
+                        System.out.println("Введите логин:");
+                        String logIn = scanner.next();
+                        if (userRepo.getLoginWoPass(logIn)!= null) {
+                            currentPerson = userRepo.getLoginWoPass(logIn);
+                            System.out.println("Введите новый пароль:");
+                            userRepo.changePassword(currentPerson, scanner.next());
+                        } else {
+                            System.out.println("Пользователь не найден!");
+                        }
+                        break;
+                    }
+                    case 4: {
                         JsonUserRepo.mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(String.valueOf(JsonUserRepo.file)), JsonUserRepo.listPerson);
                         startAgain = true;
                         startMenu = true;
@@ -66,6 +79,8 @@ public class Main {
                 int numberOperation = scanner.nextInt();
                 switch (numberOperation) {
                     case 1: {
+                        System.out.println(currentPerson.getName() + ": " + "Баланс " + currentPerson.getBalance());
+                        System.out.println("-------------------------");
                         userRepo.showBalance(currentPerson);
                         break;
                     }
@@ -82,12 +97,17 @@ public class Main {
                         break;
                     }
                     case 5: {
+                        System.out.println("Пароль сброшен! Введите новый пароль:");
+                        userRepo.changePassword(currentPerson, scanner.next());
+                        break;
+                    }
+                    case 6: {
                         //Записываем в json наших пользователей с обновленной информацией
                         JsonUserRepo.mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(String.valueOf(JsonUserRepo.file)), JsonUserRepo.listPerson);
                         secondMenu = true;
                         break;
                     }
-                    case 6: {
+                    case 7: {
                         //Записываем в json наших пользователей с обновленной информацией
                         JsonUserRepo.mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(String.valueOf(JsonUserRepo.file)), JsonUserRepo.listPerson);
                         startAgain = true;
@@ -109,8 +129,9 @@ public class Main {
         System.out.println("2.Пополнить баланс");
         System.out.println("3.Перевести деньги");
         System.out.println("4.История операций");
-        System.out.println("5.Выйти из аккаунта");
-        System.out.println("6.Выход");
+        System.out.println("5.Сменить пароль");
+        System.out.println("6.Выйти из аккаунта");
+        System.out.println("7.Выход");
         System.out.println("------------------------");
     }
 }

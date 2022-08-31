@@ -44,6 +44,20 @@ public class JsonUserRepo implements IUserRepo {
         return null;
     }
 
+    public Person getLoginWoPass(String logIn) {
+        for (Person existingPerson : listPerson) {
+            if (logIn.equals(existingPerson.getLogin())) {
+                return existingPerson;
+            }
+        }
+        return null;
+    }
+
+    public Person changePassword (Person currentPerson, String newPassword) throws NoSuchAlgorithmException {
+        currentPerson.setPassword(hashPassword(newPassword));
+        return currentPerson;
+    }
+
     public Person createNewUser(ArrayList<Person> listPerson) throws NoSuchAlgorithmException {
         System.out.println("Введите имя:");
         String name = scanner.next();
@@ -71,8 +85,6 @@ public class JsonUserRepo implements IUserRepo {
     }
 
     public double showBalance(Person currentPerson) {
-        System.out.println(currentPerson.getName() + ": " + "Баланс " + currentPerson.getBalance());
-        System.out.println("-------------------------");
         return currentPerson.getBalance();
     }
 
@@ -130,4 +142,5 @@ public class JsonUserRepo implements IUserRepo {
         }
         return currentPerson;
     }
+
 }

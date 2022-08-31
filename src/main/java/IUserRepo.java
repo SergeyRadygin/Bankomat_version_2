@@ -7,6 +7,8 @@ public interface IUserRepo {
 
     Person getPersonByLogin(String logIn, String password) throws NoSuchAlgorithmException;
 
+    Person getLoginWoPass (String logIn);
+
     Person createNewUser(ArrayList<Person> listPerson) throws NoSuchAlgorithmException;
 
     String hashPassword(String password) throws NoSuchAlgorithmException;
@@ -18,5 +20,7 @@ public interface IUserRepo {
     ArrayList<Person> showHistory(Person currentPerson);
 
     Person makeTransfer(ArrayList<Person> listPerson, Person currentPerson);
+
+    Person changePassword (Person currentPerson, String newPassword) throws NoSuchAlgorithmException;
 }
 

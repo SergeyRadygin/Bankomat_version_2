@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Реализовал интерфейс IUserRepo и класс JsonUserRepo.">
+    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Добавил функцию переназначения пароля и функцию сброса пароля по логину, если забыл пароль.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/IUserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IUserRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/JsonUserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/JsonUserRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Persons.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persons.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +49,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Edge1/IdeaProjects/Jackson/woodstox-core-6.2.8.jar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Edge1/IdeaProjects/Bankomat_version_2&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -227,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661437835342</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Добавил функцию переназначения пароля и функцию сброса пароля по логину, если забыл пароль.">
+      <created>1661934557953</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1661934557953</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -257,7 +265,8 @@
     <MESSAGE value="Вынес currentPerson из класса Main. Random вернул." />
     <MESSAGE value="Убрал рекурсию из logIn." />
     <MESSAGE value="Реализовал интерфейс IUserRepo и класс JsonUserRepo." />
-    <option name="LAST_COMMIT_MESSAGE" value="Реализовал интерфейс IUserRepo и класс JsonUserRepo." />
+    <MESSAGE value="Добавил функцию переназначения пароля и функцию сброса пароля по логину, если забыл пароль." />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавил функцию переназначения пароля и функцию сброса пароля по логину, если забыл пароль." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

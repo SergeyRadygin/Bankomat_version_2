@@ -32,19 +32,23 @@ public class Main {
                         System.out.println("Введите пароль:");
                         String password = scanner.next();
                         currentPerson = userRepo.getPersonByLogin(logIn, password);
-                        if (currentPerson == null) {
+                        /*if (currentPerson == null) {
                             System.out.println("Пользователь не найден!");
                             System.out.println("Введите логин:");
                             logIn = scanner.next();
                             System.out.println("Введите пароль:");
                             password = scanner.next();
                             userRepo.getPersonByLogin(logIn, password);
-                        }
+                        }*/
                         startMenu = true;
                         break;
                     }
                     case 2: {
-                        userRepo.createNewUser(JsonUserRepo.listPerson);
+                        System.out.println("Введите имя:");
+                        String name = scanner.next();
+                        System.out.println("введите пароль:");
+                        String password = scanner.next();
+                        currentPerson = userRepo.createNewUser(name, password);
                         startMenu = true;
                         break;
                     }

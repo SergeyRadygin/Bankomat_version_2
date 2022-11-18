@@ -53,12 +53,12 @@ public class JsonUserRepo implements IUserRepo {
         return null;
     }
 
-    public Person changePassword (Person currentPerson, String newPassword) throws NoSuchAlgorithmException {
+    public Person changePassword(Person currentPerson, String newPassword) throws NoSuchAlgorithmException {
         currentPerson.setPassword(hashPassword(newPassword));
         return currentPerson;
     }
 
-    public Person createNewUser(ArrayList<Person> listPerson) throws NoSuchAlgorithmException {
+    /*public Person createNewUser(ArrayList<Person> listPerson) throws NoSuchAlgorithmException {
         System.out.println("Введите имя:");
         String name = scanner.next();
         System.out.println("введите пароль:");
@@ -73,7 +73,27 @@ public class JsonUserRepo implements IUserRepo {
         System.out.println("Номер карты: " + currentPerson.getCardNumber());
         System.out.println("Ваш баланс: " + currentPerson.getBalance());
         return currentPerson;
+    }*/
+
+    public Person createNewUser(String name, String password) throws NoSuchAlgorithmException {
+        int min = 100000;
+        int max = 999999;
+        int cardNumber = random.nextInt(max - min) + min;
+        String login = name + "@bankomat";
+        Person currentPerson = new Person(name, cardNumber, 0, new ArrayList<>(), login, hashPassword(password));
+        listPerson.add(currentPerson);
+        currentPersonInfo(currentPerson);
+        return currentPerson;
     }
+
+    public Person currentPersonInfo(Person currentPerson) {
+        System.out.println("Ваш логин: " + currentPerson.getLogin());
+        System.out.println("Номер карты: " + currentPerson.getCardNumber());
+        System.out.println("Ваш баланс: " + currentPerson.getBalance());
+        return currentPerson;
+    }
+
+
 
     public String hashPassword(String password) throws NoSuchAlgorithmException {
 
@@ -109,6 +129,7 @@ public class JsonUserRepo implements IUserRepo {
         }
         return currentPerson.getHistory();
     }
+
     public Person makeTransfer(ArrayList<Person> listPerson, Person currentPerson) {
         Person makePerson = null;
         System.out.println("Введите номер карты: ");

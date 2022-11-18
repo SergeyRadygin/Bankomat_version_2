@@ -9,7 +9,10 @@ public interface IUserRepo {
 
     Person getLoginWoPass (String logIn);
 
-    Person createNewUser(ArrayList<Person> listPerson) throws NoSuchAlgorithmException;
+    //Person createNewUser(ArrayList<Person> listPerson) throws NoSuchAlgorithmException;
+    Person createNewUser(String name, String password) throws NoSuchAlgorithmException;
+
+    Person currentPersonInfo(Person currentPerson);
 
     String hashPassword(String password) throws NoSuchAlgorithmException;
 

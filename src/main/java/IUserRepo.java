@@ -1,5 +1,3 @@
-package main.java;
-
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 

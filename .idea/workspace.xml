@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Добавил функцию переназначения пароля и функцию сброса пароля по логину, если забыл пароль.">
+    <list default="true" id="2a9c0c3c-6917-44ad-b3a7-399638fc8204" name="Changes" comment="Переработал метод createNewUser, чтобы не передавать весь список listPerson.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bankomat_version_2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Bankomat_version_2.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/IUserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IUserRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/JsonUserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/JsonUserRepo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Persons.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Persons.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Task" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,38 +42,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path&quot;: &quot;C:\\Users\\Edge1\\IdeaProjects\\Jackson&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Edge1/IdeaProjects/Bankomat_version_2&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path": "C:\\Users\\Edge1\\IdeaProjects\\Jackson",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "last_directory_selection": "C:/Users/Edge1/IdeaProjects/Bankomat_version_2/src/main/java",
+    "last_opened_file_path": "C:/Users/Edge1/IdeaProjects/Bankomat_version_2",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Edge1\IdeaProjects\Bankomat_version_2\src\main" />
       <recent name="C:\Users\Edge1\IdeaProjects\Bankomat_version_2\src\main\resources" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.main.java.Main">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Dump" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.java.Dump" />
       <module name="Bankomat_version_2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.java.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -85,19 +93,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Solution" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Solution" />
-      <module name="Bankomat_version_2" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="main.java.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="main.java.Main" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Bankomat_version_2" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="main.java.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -105,11 +106,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Solution" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Solution" />
+      <module name="Bankomat_version_2" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.main.java.Main" />
         <item itemvalue="Application.Dump" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Solution" />
       </list>
     </recent_temporary>
@@ -235,7 +243,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661934557953</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Переработал метод createNewUser, чтобы не передавать весь список listPerson.">
+      <created>1668773055183</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1668773055183</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -266,7 +281,8 @@
     <MESSAGE value="Убрал рекурсию из logIn." />
     <MESSAGE value="Реализовал интерфейс IUserRepo и класс JsonUserRepo." />
     <MESSAGE value="Добавил функцию переназначения пароля и функцию сброса пароля по логину, если забыл пароль." />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил функцию переназначения пароля и функцию сброса пароля по логину, если забыл пароль." />
+    <MESSAGE value="Переработал метод createNewUser, чтобы не передавать весь список listPerson." />
+    <option name="LAST_COMMIT_MESSAGE" value="Переработал метод createNewUser, чтобы не передавать весь список listPerson." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -289,6 +305,7 @@
     <watches-manager>
       <configuration name="Application">
         <watch expression="listPerson.get(0)" />
+        <watch expression="listPerson" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>

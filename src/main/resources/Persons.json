@@ -29,15 +29,8 @@
 }, {
   "name" : "test",
   "balance" : 1000.0,
-  "cardNumber" : 570470,
+  "cardNumber" : 309870,
   "history" : [ ],
   "login" : "test@bankomat",
   "password" : "1b4f0e9851971998e732078544c96b36c3d01cedf7caa332359d6f1d83567014"
-}, {
-  "name" : "test2",
-  "balance" : 1000.0,
-  "cardNumber" : 695875,
-  "history" : [ ],
-  "login" : "test2@bankomat",
-  "password" : "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08"
 } ]

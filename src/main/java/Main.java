@@ -1,6 +1,5 @@
-package main.java;
-
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+
 import java.io.File;
 import java.util.*;
 
@@ -16,6 +15,7 @@ public class Main {
         boolean startAgain = false;
         while (!startAgain) {
             Person currentPerson = null;
+            Person currentPersonLogin = null;
             boolean secondMenu = false;
             boolean startMenu = false;
             while (!startMenu) {
@@ -29,16 +29,33 @@ public class Main {
                     case 1: {
                         System.out.println("Введите логин:");
                         String logIn = scanner.next();
-                        System.out.println("Введите пароль:");
+                        currentPersonLogin = userRepo.getLoginWoPass(logIn);
+                        if (currentPersonLogin != null) {
+                            System.out.println("Введите пароль:");
+                            String password = scanner.next();
+                            currentPerson = userRepo.getPersonByLogin(logIn, password);
+                            if (currentPerson != null) {
+                                startMenu = true;
+                            } else {
+                                System.out.println("Не верный пароль!");
+                                secondMenu = true;
+                            }
+                        } else {
+                            System.out.println("Пользователь не найден!");
+                            secondMenu = true;
+                        }
+
+
+                        /*System.out.println("Введите пароль:");
                         String password = scanner.next();
                         currentPerson = userRepo.getPersonByLogin(logIn, password);
-                        /*if (currentPerson == null) {
+                        if (currentPerson == null) {
                             System.out.println("Пользователь не найден!");
-                            System.out.println("Введите логин:");
+                            *//*System.out.println("Введите логин:");
                             logIn = scanner.next();
                             System.out.println("Введите пароль:");
                             password = scanner.next();
-                            userRepo.getPersonByLogin(logIn, password);
+                            userRepo.getPersonByLogin(logIn, password);*//*
                         }*/
                         startMenu = true;
                         break;
@@ -55,7 +72,7 @@ public class Main {
                     case 3: {
                         System.out.println("Введите логин:");
                         String logIn = scanner.next();
-                        if (userRepo.getLoginWoPass(logIn)!= null) {
+                        if (userRepo.getLoginWoPass(logIn) != null) {
                             currentPerson = userRepo.getLoginWoPass(logIn);
                             System.out.println("Введите новый пароль:");
                             userRepo.changePassword(currentPerson, scanner.next());

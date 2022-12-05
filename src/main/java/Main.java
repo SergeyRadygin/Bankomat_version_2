@@ -123,12 +123,16 @@ public class Main {
                         break;
                     }
                     case 6: {
+                        userRepo.currentPersonInfo (currentPerson);
+                        break;
+                    }
+                    case 7: {
                         //Записываем в json наших пользователей с обновленной информацией
                         JsonUserRepo.mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(String.valueOf(JsonUserRepo.file)), JsonUserRepo.listPerson);
                         secondMenu = true;
                         break;
                     }
-                    case 7: {
+                    case 8: {
                         //Записываем в json наших пользователей с обновленной информацией
                         JsonUserRepo.mapper.writer(new DefaultPrettyPrinter()).writeValue(new File(String.valueOf(JsonUserRepo.file)), JsonUserRepo.listPerson);
                         startAgain = true;
@@ -151,8 +155,9 @@ public class Main {
         System.out.println("3.Перевести деньги");
         System.out.println("4.История операций");
         System.out.println("5.Сменить пароль");
-        System.out.println("6.Выйти из аккаунта");
-        System.out.println("7.Выход");
+        System.out.println("6.Информация об аккаунте");
+        System.out.println("7.Выйти из аккаунта");
+        System.out.println("8.Выход");
         System.out.println("------------------------");
     }
 }

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.MessageDigest;
@@ -16,10 +17,15 @@ import java.util.Scanner;
 public class JsonUserRepo implements IUserRepo {
     Scanner scanner = new Scanner(System.in);
     Random random = new Random();
-    static final Path file = Paths.get("C:\\Users\\Edge1\\IdeaProjects", "Bankomat_version_2\\src\\main\\resources\\Persons.json");
-    static ObjectMapper mapper = new ObjectMapper();
-    //Считываем json с нашими пользователями
+
+    //static final Path file = Paths.get("C:\\Users\\Edge1\\IdeaProjects", "Bankomat_version_2\\src\\main\\resources\\Persons.json");
+
+    static String filePath = "C:\\Users\\Edge1\\IdeaProjects\\Bankomat_version_2\\src\\main\\resources\\Persons.json";
+
+    static final Path file = Paths.get(filePath);
+
     static Person[] persons;
+    static ObjectMapper mapper = new ObjectMapper();
 
     static {
         try {
@@ -28,10 +34,7 @@ public class JsonUserRepo implements IUserRepo {
             throw new RuntimeException(e);
         }
     }
-
-    //Создаем список на основе массива, т.к. будем добавлять новых пользователей
     static ArrayList<Person> listPerson = new ArrayList<>(Arrays.asList(persons));
-
 
     public Person getPersonByLogin(String logIn, String password) throws NoSuchAlgorithmException {
         for (Person existingPerson : listPerson) {
@@ -90,7 +93,6 @@ public class JsonUserRepo implements IUserRepo {
         System.out.println("Ваш баланс: " + currentPerson.getBalance());
         return currentPerson;
     }
-
 
 
     public String hashPassword(String password) throws NoSuchAlgorithmException {
